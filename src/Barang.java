@@ -16,12 +16,9 @@ public class Barang implements HitungTotalBayar{
         this.jumlahBeli = jumlahBeli;
     }
 
-    // @Override
-    // public double hitungTotalBayar() {
-    //     return hargaBarang * jumlahBeli;
-    // }
+ 
 
-    public void simpanTransaksi() {
+    public void save() {
         try (Connection connection = DatabaseUtil.getConnection();
              PreparedStatement statement = connection.prepareStatement(
                 "INSERT INTO barang (kodeBarang, namaBarang, hargaBarang, jumlahBeli, tanggal_transaksi, waktu_transaksi) " +
@@ -42,7 +39,7 @@ public class Barang implements HitungTotalBayar{
         }
     }
 
-    public void bacaTransaksiDariDatabase() {
+    public void read() {
         try (Connection connection = DatabaseUtil.getConnection();
              Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery("SELECT * FROM barang")) {
@@ -70,7 +67,7 @@ public class Barang implements HitungTotalBayar{
     }
     
 
-    public void perbaruiTransaksiDiDatabase(String kodeBarang, double newHargaBarang) {
+    public void update(String kodeBarang, double newHargaBarang) {
         try (Connection connection = DatabaseUtil.getConnection();
              PreparedStatement statement = connection.prepareStatement(
                      "UPDATE barang SET hargaBarang = ? WHERE kodeBarang = ?")) {
@@ -91,7 +88,7 @@ public class Barang implements HitungTotalBayar{
         }
     }
 
-    public void hapusTransaksiDariDatabase(String kodeBarang) {
+    public void delete(String kodeBarang) {
         try (Connection connection = DatabaseUtil.getConnection();
              PreparedStatement statement = connection.prepareStatement(
                      "DELETE FROM barang WHERE kodeBarang = ?")) {

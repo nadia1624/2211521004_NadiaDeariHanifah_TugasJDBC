@@ -43,12 +43,12 @@ public class App {
                         int jumlahBeli = scanner.nextInt();
 
                         barang = new Barang(kodeBarang,namaBarang, hargaBarang, jumlahBeli);
-                        barang.simpanTransaksi();
+                        barang.save();
                         break;
                     case 2:
                         if (barang != null) {
                             System.out.println("Data Barang:");
-                            barang.bacaTransaksiDariDatabase();
+                            barang.read();
                         } else {
                             System.out.println("Belum ada barang yang dimasukkan.");
                         }
@@ -60,7 +60,7 @@ public class App {
                             idUpdate=scanner.nextLine();
                             System.out.print("Masukkan Harga Barang Baru: ");
                             double newHarga = scanner.nextDouble();
-                            barang.perbaruiTransaksiDiDatabase(idUpdate, newHarga);
+                            barang.update(idUpdate, newHarga);
                         } else {
                             System.out.println("Belum ada barang yang dimasukkan.");
                         }
@@ -70,7 +70,7 @@ public class App {
                             System.out.print("Masukkan Kode Barang yang akan dihapus: ");
                             String idHapus = scanner.nextLine();
                             idHapus = scanner.nextLine();
-                            barang.hapusTransaksiDariDatabase(idHapus);
+                            barang.delete(idHapus);
                         } else {
                             System.out.println("Belum ada transaksi yang dimasukkan.");
                         }
