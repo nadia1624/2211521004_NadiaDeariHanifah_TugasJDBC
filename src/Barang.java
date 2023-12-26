@@ -2,7 +2,7 @@ import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class Barang {
+public class Barang implements HitungTotalBayar{
 
     private String kodeBarang;
     private String namaBarang;
@@ -121,5 +121,16 @@ public class Barang {
         SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
         Date date = new Date();
         return timeFormat.format(date);
+    }
+
+    public double hitungTotalBayar(){// interface dari hitungTotalBayar
+        return hargaBarang*jumlahBeli;
+    }
+
+    @Override
+    public String toString(){
+        return "Nama Barang\t: " + namaBarang + 
+        "\nHarga Barang\t: " + hargaBarang +
+         "\nJumlah Beli\t: " + jumlahBeli ;
     }
 }
